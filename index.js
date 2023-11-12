@@ -1,23 +1,20 @@
-var drumCount = document.querySelectorAll('.drum').length;
-for (var i = 0; i<drumCount; i++){
-  document.querySelectorAll('.drum')[i].addEventListener('click', function(event){
-    var btnSelect = this.innerHTML;
-    console.log(event.target);
-    playSound(btnSelect);
-    btnActive(this.innerHTML);
 
 
-  });
-}
+$(".drum").on("click", function(){
+  playSound(this.innerHTML);
+  btnActive(this.innerHTML);
+})
 
-document.addEventListener('keydown', function(event){
-  console.log(event.key);
+$(document).on("keydown", function(){
   playSound(event.key);
   btnActive(event.key);
-});
+})
+
+
 
 function btnActive(key){
-  document.querySelector("." + key).classList.add("pressed")
+
+  $("." + key).addClass("pressed");
   setTimeout(function(){
     document.querySelector("." + key).classList.remove("pressed")
   }, 100)
@@ -48,17 +45,17 @@ function playSound(btnSelect){
       break;
 
     case 'j':
-      var audio = new Audio('sounds/crash.mp3');
+      var audio = new Audio('sounds/snare.mp3');
       audio.play();
       break;
 
    case 'k':
-      var audio = new Audio('sounds/kick-bass.mp3');
+      var audio = new Audio('sounds/crash.mp3');
       audio.play();
       break;
 
   case 'l':
-      var audio = new Audio('sounds/snare.mp3');
+      var audio = new Audio('sounds/kick-bass.mp3');
       audio.play();
       break;
   
